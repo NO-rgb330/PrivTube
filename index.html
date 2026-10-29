@@ -11,51 +11,31 @@
     font-family:Arial,Helvetica,sans-serif !important;
     font-weight:700 !important;
   }
-
   :root{
-    --bg:#0f0f0f;
-    --panel:#0a0a0a;
-    --line:#1e1e1e;
-    --fg:#f1f1f1;
-    --muted:#a3a3a3;
-    --field:#141414;
-    --chip:#242424;
-    --hover:#2c2c2c;
-    --accent:#ff2d55;
-    --radius:12px;
-    --hdr:58px;
+    --bg:#0f0f0f; --panel:#0a0a0a; --line:#1e1e1e; --fg:#f1f1f1;
+    --muted:#a3a3a3; --field:#141414; --chip:#242424; --hover:#2c2c2c;
+    --accent:#ff2d55; --radius:12px; --hdr:58px;
   }
   body.light{
-    --bg:#f9f9f9;
-    --panel:#ffffff;
-    --line:#e4e4e4;
-    --fg:#0f0f0f;
-    --muted:#5f6368;
-    --field:#f1f1f1;
-    --chip:#e9e9e9;
-    --hover:#ededed;
+    --bg:#f9f9f9; --panel:#ffffff; --line:#e4e4e4; --fg:#0f0f0f;
+    --muted:#5f6368; --field:#f1f1f1; --chip:#e9e9e9; --hover:#ededed;
   }
-
   html,body{height:100%}
   body{
-    margin:0;
-    background:var(--bg);
-    color:var(--fg);
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    margin:0; background:var(--bg); color:var(--fg);
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
     transition:background .2s,color .2s;
   }
   button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
   svg{display:block}
   ::selection{background:var(--accent);color:#fff}
 
-  /* ============ Header ============ */
+  /* ---------- Header ---------- */
   header{
     position:sticky;top:0;z-index:20;
     display:flex;align-items:center;gap:12px;
     height:var(--hdr);padding:0 16px;
-    background:var(--panel);
-    border-bottom:1px solid var(--line);
+    background:var(--panel);border-bottom:1px solid var(--line);
   }
   body.elite header{border-bottom-color:var(--accent)}
 
@@ -64,12 +44,11 @@
     width:30px;height:21px;border-radius:6px;background:var(--accent);
     display:grid;place-items:center;color:#fff;flex:0 0 auto;
   }
-
   .search{flex:1 1 auto;max-width:440px;margin:0 auto}
   .search input{
     width:100%;height:36px;border-radius:18px;border:1px solid var(--line);
     background:var(--field);color:var(--fg);padding:0 16px;font-size:13.5px;outline:none;
-    transition:border-color .15s,background .15s;
+    transition:border-color .15s;
   }
   .search input:focus{border-color:var(--accent)}
   .search input::placeholder{color:var(--muted)}
@@ -82,8 +61,7 @@
   .icon-btn{
     width:40px;height:40px;border-radius:50%;
     display:grid;place-items:center;
-    transition:background .12s,transform .08s,color .12s;
-    flex:0 0 auto;
+    transition:background .12s,transform .08s,color .12s;flex:0 0 auto;
   }
   .icon-btn:hover{background:var(--hover)}
   .icon-btn:active{transform:scale(.92)}
@@ -92,7 +70,7 @@
   body.elite .icon-btn.hdr#btnTheme{display:none}
 
   .btn-ghost{
-    display:flex;align-items:center;gap:7px;flex:0 0 auto;
+    display:flex;align-items:center;gap:6px;flex:0 0 auto;
     height:36px;padding:0 13px;border-radius:18px;
     border:1px solid var(--line);background:transparent;color:var(--fg);
     font-size:12px;letter-spacing:.6px;
@@ -103,15 +81,15 @@
   .btn-ghost[disabled]{opacity:.5;cursor:progress}
 
   .btn-add{
-    display:flex;align-items:center;gap:7px;flex:0 0 auto;
+    display:flex;align-items:center;gap:6px;flex:0 0 auto;
     height:36px;padding:0 16px;border-radius:18px;
-    background:var(--accent);color:#fff;font-size:13.5px;
+    background:var(--accent);color:#fff;font-size:13px;
     transition:filter .15s,transform .08s;
   }
   .btn-add:hover{filter:brightness(1.12)}
   .btn-add:active{transform:scale(.97)}
 
-  /* ============ Tabs ============ */
+  /* ---------- Tabs + Breadcrumb ---------- */
   .tabs{
     display:flex;gap:8px;padding:14px 20px 0;
     max-width:2200px;margin:0 auto;width:100%;
@@ -124,12 +102,41 @@
   .tab:active{transform:scale(.97)}
   .tab.active{background:var(--fg);color:var(--bg)}
 
-  /* ============ Grid ============ */
+  .breadcrumb-row{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 20px 0;max-width:2200px;margin:0 auto;width:100%;
+  }
+  .breadcrumb{
+    flex:1 1 auto;display:flex;align-items:center;gap:2px;
+    overflow-x:auto;white-space:nowrap;min-width:0;
+    scrollbar-width:none;
+  }
+  .breadcrumb::-webkit-scrollbar{display:none}
+  .bc-link{
+    padding:4px 8px;border-radius:6px;font-size:13px;
+    color:var(--muted);transition:background .12s,color .12s;flex:0 0 auto;
+  }
+  .bc-link:hover{background:var(--hover);color:var(--fg)}
+  .bc-link.current{color:var(--fg);cursor:default}
+  .bc-link.current:hover{background:transparent}
+  .bc-sep{color:var(--muted);font-size:12px;user-select:none;padding:0 2px}
+  .bc-search{font-size:13px;color:var(--muted);padding:4px 8px}
+  .bc-search b{color:var(--accent)}
+
+  .btn-new-album{
+    display:flex;align-items:center;gap:6px;flex:0 0 auto;
+    height:32px;padding:0 13px;border-radius:16px;
+    background:var(--chip);color:var(--fg);font-size:12.5px;
+    transition:background .15s,transform .08s;
+  }
+  .btn-new-album:hover{background:var(--hover)}
+  .btn-new-album:active{transform:scale(.97)}
+
+  /* ---------- Grid ---------- */
   .grid{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(268px,1fr));
-    gap:26px 16px;
-    padding:22px 20px 70px;
+    gap:26px 16px;padding:22px 20px 70px;
     max-width:2200px;margin:0 auto;
   }
   .card{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -144,6 +151,10 @@
     width:100%;height:100%;display:grid;place-items:center;
     color:var(--muted);font-size:30px;background:var(--chip);
   }
+  .thumb-ph.folder{
+    background:linear-gradient(135deg, var(--chip), var(--hover));
+    color:var(--accent);
+  }
   .dur{
     position:absolute;right:7px;bottom:7px;
     background:rgba(0,0,0,.85);color:#fff;
@@ -151,18 +162,26 @@
     padding:2px 6px;border-radius:5px;
     font-variant-numeric:tabular-nums;
   }
+  .folder-icon{
+    position:absolute;top:7px;left:7px;
+    width:24px;height:24px;border-radius:6px;
+    background:rgba(0,0,0,.75);color:#fff;
+    display:grid;place-items:center;pointer-events:none;
+  }
   .card .meta{padding:10px 2px 0}
   .card .title{
     font-size:14px;line-height:1.32;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
     word-break:break-word;
   }
-  .card .sub{font-size:12px;color:var(--muted);margin-top:5px}
+  .card .sub{font-size:12px;color:var(--muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
   .card .acts{
     position:absolute;top:8px;right:8px;display:flex;gap:6px;
     opacity:0;transition:opacity .15s;z-index:3;
   }
+  .card.album .folder-icon{right:auto;left:7px}
+  .card.album .acts{top:8px;right:8px}
   .card:hover .acts{opacity:1}
   @media (hover:none){ .card .acts{opacity:1} }
   .act{
@@ -174,46 +193,33 @@
   .act:hover{background:var(--accent)}
   .act:active{transform:scale(.92)}
 
-  /* ============ Empty ============ */
+  /* ---------- Empty ---------- */
   .empty{
-    grid-column:1/-1;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;
     gap:14px;padding:80px 20px;text-align:center;color:var(--muted);
   }
   .empty h2{margin:0;font-size:20px;color:var(--fg)}
-  .empty p{margin:0;font-size:13.5px;max-width:420px;line-height:1.6}
+  .empty p{margin:0;font-size:13.5px;max-width:440px;line-height:1.6}
   .empty .circle{
     width:74px;height:74px;border-radius:50%;background:var(--chip);
     display:grid;place-items:center;color:var(--muted);
   }
 
-  /* ============ Player (always dark) ============ */
-  .watch{
-    position:fixed;inset:0;z-index:100;
-    display:none;flex-direction:column;background:#000;
-  }
+  /* ---------- Player ---------- */
+  .watch{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;background:#000}
   .watch.open{display:flex}
   .watch-top{
     flex:0 0 auto;display:flex;align-items:center;gap:10px;
-    padding:8px 12px;background:#0a0a0a;border-bottom:1px solid #161616;
-    color:#fff;
+    padding:8px 12px;background:#0a0a0a;border-bottom:1px solid #161616;color:#fff;
   }
-  .watch-title{
-    flex:1 1 auto;min-width:0;
-    font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  }
-  .stage{
-    position:relative;flex:1 1 auto;min-height:0;
-    display:flex;align-items:center;justify-content:center;
-    background:#000;overflow:hidden;touch-action:manipulation;
-  }
+  .watch-title{flex:1 1 auto;min-width:0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .stage{position:relative;flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden;touch-action:manipulation}
   #video{width:100%;height:100%;object-fit:contain;display:block;background:#000;outline:none}
   .stage.hide-controls{cursor:none}
   .stage.hide-controls .controls{opacity:0;transform:translateY(12px);pointer-events:none}
 
   .big-play{
-    position:absolute;inset:0;margin:auto;
-    width:82px;height:82px;border-radius:50%;
+    position:absolute;inset:0;margin:auto;width:82px;height:82px;border-radius:50%;
     background:rgba(0,0,0,.55);display:grid;place-items:center;color:#fff;
     pointer-events:none;opacity:1;transition:opacity .18s,transform .18s;z-index:2;
   }
@@ -244,8 +250,7 @@
   .knob{
     position:absolute;left:0;top:50%;width:13px;height:13px;border-radius:50%;
     background:var(--accent);transform:translate(-50%,-50%);
-    box-shadow:0 0 0 4px rgba(255,45,85,.18);
-    opacity:0;transition:opacity .12s;pointer-events:none;
+    box-shadow:0 0 0 4px rgba(255,45,85,.18);opacity:0;transition:opacity .12s;pointer-events:none;
   }
   .track:hover .knob,.track.scrubbing .knob{opacity:1}
 
@@ -253,9 +258,9 @@
   .controls .icon-btn:hover{background:rgba(255,255,255,.14)}
   .vol{display:flex;align-items:center;gap:2px}
   .vol input[type=range]{
-    -webkit-appearance:none;appearance:none;
-    width:0;height:4px;border-radius:2px;background:rgba(255,255,255,.35);
-    outline:none;cursor:pointer;transition:width .18s ease,opacity .18s;opacity:0;
+    -webkit-appearance:none;appearance:none;width:0;height:4px;border-radius:2px;
+    background:rgba(255,255,255,.35);outline:none;cursor:pointer;
+    transition:width .18s ease,opacity .18s;opacity:0;
   }
   .vol:hover input[type=range],.vol:focus-within input[type=range]{width:92px;opacity:1;margin:0 8px}
   .vol input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;cursor:pointer;border:0}
@@ -279,10 +284,8 @@
   .menu-item:hover{background:rgba(255,255,255,.1)}
   .menu-item.active{color:var(--accent)}
 
-  /* ============ Photo viewer ============ */
-  .viewer{
-    position:fixed;inset:0;z-index:120;display:none;flex-direction:column;background:#000;
-  }
+  /* ---------- Photo viewer ---------- */
+  .viewer{position:fixed;inset:0;z-index:120;display:none;flex-direction:column;background:#000}
   .viewer.open{display:flex}
   .viewer-top{
     flex:0 0 auto;display:flex;align-items:center;gap:10px;
@@ -309,11 +312,8 @@
   .nav.prev{left:14px}
   .nav.next{right:14px}
 
-  /* ============ Modal ============ */
-  .modal-wrap{
-    position:fixed;inset:0;z-index:400;display:grid;place-items:center;
-    background:rgba(0,0,0,.72);padding:20px;
-  }
+  /* ---------- Modal ---------- */
+  .modal-wrap{position:fixed;inset:0;z-index:400;display:grid;place-items:center;background:rgba(0,0,0,.72);padding:20px}
   .modal{
     width:min(420px,100%);background:var(--panel);border:1px solid var(--line);
     border-radius:16px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.65);
@@ -335,12 +335,11 @@
   .mbtn.ok{background:var(--accent);color:#fff}
   .mbtn.ok:hover{filter:brightness(1.1)}
 
-  /* ============ Elite AI ============ */
+  /* ---------- Elite AI ---------- */
   .ai-fab{
     position:fixed;right:20px;bottom:20px;z-index:150;
     width:56px;height:56px;border-radius:50%;
-    background:var(--accent);color:#fff;
-    display:none;place-items:center;
+    background:var(--accent);color:#fff;display:none;place-items:center;
     box-shadow:0 10px 28px rgba(255,45,85,.42);
     transition:transform .12s, filter .15s;
   }
@@ -353,21 +352,17 @@
 
   .ai-panel{
     position:fixed;right:20px;bottom:88px;z-index:150;
-    width:390px;max-width:calc(100vw - 28px);
-    height:540px;max-height:calc(100vh - 116px);
-    background:#141414;color:#f1f1f1;
-    border:1px solid #2b2b2b;border-radius:16px;
+    width:390px;max-width:calc(100vw - 28px);height:540px;max-height:calc(100vh - 116px);
+    background:#141414;color:#f1f1f1;border:1px solid #2b2b2b;border-radius:16px;
     display:none;flex-direction:column;overflow:hidden;
-    box-shadow:0 24px 70px rgba(0,0,0,.75);
-    animation:aiIn .16s ease;
+    box-shadow:0 24px 70px rgba(0,0,0,.75);animation:aiIn .16s ease;
   }
   body.elite .ai-panel.open{display:flex}
   @keyframes aiIn{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
 
   .ai-head{
     flex:0 0 auto;display:flex;align-items:center;gap:8px;
-    padding:10px 10px 10px 14px;
-    background:#0d0d0d;border-bottom:1px solid #242424;
+    padding:10px 10px 10px 14px;background:#0d0d0d;border-bottom:1px solid #242424;
   }
   .ai-dot{width:9px;height:9px;border-radius:50%;background:#6b6b6b;flex:0 0 auto;transition:background .2s,box-shadow .2s}
   .ai-dot.ok{background:#31d158;box-shadow:0 0 0 3px rgba(49,209,88,.18)}
@@ -376,8 +371,7 @@
   .ai-name{font-size:13.5px;letter-spacing:.4px}
   .ai-status{
     flex:1 1 auto;min-width:0;font-size:10.5px;color:#8c8c8c;
-    text-transform:uppercase;letter-spacing:.6px;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
   .ai-head .icon-btn{width:32px;height:32px;color:#d5d5d5}
   .ai-head .icon-btn:hover{background:#232323}
@@ -410,11 +404,10 @@
     padding:10px;background:#0d0d0d;border-top:1px solid #242424;
   }
   .ai-compose textarea{
-    flex:1 1 auto;min-height:40px;max-height:120px;
-    resize:none;border:1px solid #2b2b2b;border-radius:12px;
-    background:#1b1b1b;color:#f1f1f1;
-    padding:11px 13px;font-size:13px;line-height:1.4;outline:none;
-    scrollbar-width:none;
+    flex:1 1 auto;min-height:40px;max-height:120px;resize:none;
+    border:1px solid #2b2b2b;border-radius:12px;
+    background:#1b1b1b;color:#f1f1f1;padding:11px 13px;
+    font-size:13px;line-height:1.4;outline:none;scrollbar-width:none;
   }
   .ai-compose textarea::-webkit-scrollbar{display:none}
   .ai-compose textarea:focus{border-color:var(--accent)}
@@ -430,7 +423,7 @@
   .ai-send:disabled{opacity:.35;cursor:not-allowed;filter:none}
   .ai-send.stopping{background:#ff2d55}
 
-  /* ============ Drop / toast ============ */
+  /* ---------- Drop / toast ---------- */
   .drop{
     position:fixed;inset:0;z-index:200;display:none;place-items:center;
     background:rgba(0,0,0,.82);font-size:20px;color:#fff;
@@ -447,13 +440,17 @@
   }
   .toast.show{opacity:1;transform:translate(-50%,0)}
 
-  @media (max-width:780px){
+  @media (max-width:900px){
     .storage{display:none}
+  }
+  @media (max-width:780px){
     .grid{grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:18px 10px;padding:14px 10px 70px}
     .card .title{font-size:12.5px}
     .card .sub{font-size:11px}
-    .btn-add span{display:none}
-    .btn-add{padding:0 13px}
+    .btn-add span, .btn-ghost span, .btn-new-album span{display:none}
+    .btn-add{padding:0 12px}
+    .btn-ghost{padding:0 11px}
+    .btn-new-album{padding:0 11px}
     .time{font-size:11px}
     .search{max-width:none}
     .ai-panel{right:8px;left:8px;bottom:84px;width:auto;height:auto;max-height:calc(100vh - 108px)}
@@ -461,8 +458,6 @@
   }
   @media (max-width:520px){
     .brand .name{display:none}
-    .btn-ghost span{display:none}
-    .btn-ghost{padding:0 11px}
   }
 </style>
 </head>
@@ -485,16 +480,30 @@
   <button class="icon-btn hdr" id="btnTheme" title="Toggle theme"></button>
   <button class="btn-ghost" id="btnPrivate"></button>
 
-  <button class="btn-add" id="btnAdd">
+  <button class="btn-ghost" id="btnAddFolder" title="Upload a folder (becomes an album)">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 6h-8l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-1 8h-3v3h-2v-3h-3v-2h3V9h2v3h3v2z"/></svg>
+    <span>Folder</span>
+  </button>
+
+  <button class="btn-add" id="btnAdd" title="Upload files">
     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-    <span>Add</span>
+    <span>Files</span>
   </button>
   <input type="file" id="fileInput" accept="video/*,image/*" multiple hidden />
+  <input type="file" id="folderInput" webkitdirectory directory multiple hidden />
 </header>
 
 <div class="tabs">
   <button class="tab active" data-tab="videos">Videos</button>
   <button class="tab" data-tab="photos">Photos</button>
+</div>
+
+<div class="breadcrumb-row">
+  <div class="breadcrumb" id="breadcrumb"></div>
+  <button class="btn-new-album" id="btnNewAlbum" title="New album at current location">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+    <span>New album</span>
+  </button>
 </div>
 
 <main id="grid" class="grid"></main>
@@ -526,22 +535,17 @@
       </div>
       <div class="ctl-row">
         <button class="icon-btn" id="btnPlay" title="Play / Pause (K)"></button>
-
         <div class="vol">
           <button class="icon-btn" id="btnMute" title="Mute (M)"></button>
           <input id="volRange" type="range" min="0" max="800" step="5" value="100" aria-label="Volume" />
           <span class="vol-label" id="volLabel">100%</span>
         </div>
-
         <div class="time"><span id="tCur">0:00</span> / <span id="tDur">0:00</span></div>
-
         <div class="spacer"></div>
-
         <div class="menu-wrap">
           <button class="txt-btn" id="btnSpeed" title="Playback speed">1×</button>
           <div class="menu" id="speedMenu"></div>
         </div>
-
         <button class="icon-btn" id="btnLoop" title="Loop (R)"></button>
         <button class="icon-btn" id="btnPip" title="Picture in Picture"></button>
         <button class="icon-btn" id="btnFs" title="Fullscreen (F)"></button>
@@ -591,7 +595,7 @@
   </div>
 </div>
 
-<div class="drop" id="drop">Drop videos or photos to add them</div>
+<div class="drop" id="drop">Drop files or folders to add them</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -615,13 +619,15 @@ const ICON = {
   trash:  svg('<path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>', 16),
   trashLg:svg('<path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>', 20),
   pencil: svg('<path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>', 16),
-  pencilLg: svg('<path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>', 20),
+  pencilLg:svg('<path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>', 20),
   lock:   svg('<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/>', 15),
   unlock: svg('<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.5-1.9" fill="none" stroke="currentColor" stroke-width="2"/>', 15),
   sun:    svg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>', 19),
   moon:   svg('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>', 19),
   send:   svg('<path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"/>', 20),
-  stop:   svg('<rect x="6" y="6" width="12" height="12" rx="2"/>', 20)
+  stop:   svg('<rect x="6" y="6" width="12" height="12" rx="2"/>', 20),
+  folder: svg('<path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/>', 42),
+  folderSm:svg('<path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/>', 15)
 };
 
 /* ============================================================
@@ -656,6 +662,7 @@ function uid() {
   return 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
 }
 const cleanName = n => n.replace(/\.[^.]+$/, '') || n;
+const getRelPath = f => f.webkitRelativePath || f._relPath || '';
 
 /* ============================================================
    IndexedDB
@@ -683,24 +690,17 @@ const idbDel = (db, store, key) => idbReq(db.transaction(store, 'readwrite').obj
 const idbAll = (db, store) => idbReq(db.transaction(store, 'readonly').objectStore(store).getAll());
 
 /* ============================================================
-   Storage — OPFS primary, IndexedDB fallback (per suite)
+   Storage
    ============================================================ */
 const Storage = {
-  mode: 'idb',
-  db: null,
-  dir: null,
-  suite: 'main',
-  _opfsDead: false,   // sticky: OPFS failed at getDirectoryHandle level
+  mode: 'idb', db: null, dir: null, suite: 'main', _opfsDead: false,
 
   async init() {
     this.db = await openDB();
     await this.setSuite('main');
     return this.mode;
   },
-
-  dirName() {
-    return this.suite === 'elite' ? 'privtube_elite' : 'privtube_main';
-  },
+  dirName() { return this.suite === 'elite' ? 'privtube_elite' : 'privtube_main'; },
 
   async setSuite(suite) {
     this.suite = suite;
@@ -713,7 +713,6 @@ const Storage = {
       !!(navigator.storage && navigator.storage.getDirectory);
 
     if (!opfsOK) { this.mode = 'idb'; return; }
-
     try {
       const root = await navigator.storage.getDirectory();
       this.dir = await root.getDirectoryHandle(this.dirName(), { create: true });
@@ -730,11 +729,10 @@ const Storage = {
       try {
         const fh = await this.dir.getFileHandle(id, { create: true });
         const w  = await fh.createWritable();
-        await w.write(blob);
-        await w.close();
+        await w.write(blob); await w.close();
         return;
       } catch (e) {
-        console.warn('[storage] OPFS write failed, falling back to IndexedDB:', e);
+        console.warn('[storage] OPFS write failed:', e);
         this.mode = 'idb';
       }
     }
@@ -742,7 +740,6 @@ const Storage = {
   },
 
   async getBlob(id) {
-    // Try OPFS first (lazily re-probe if setSuite failed at startup)
     if (!this._opfsDead) {
       try {
         if (!this.dir) {
@@ -752,21 +749,16 @@ const Storage = {
         const fh = await this.dir.getFileHandle(id);
         return await fh.getFile();
       } catch (e) {
-        if (e && e.name === 'NotFoundError') {
-          // File not in OPFS — fall through to IDB
-        } else {
-          // OPFS genuinely unusable this session — stop probing
-          this.dir = null;
-          this._opfsDead = true;
-        }
+        if (e && e.name === 'NotFoundError') { /* fall through */ }
+        else { this.dir = null; this._opfsDead = true; }
       }
     }
     return await idbGet(this.db, 'blobs', id);
   },
 
   async removeBlob(id) {
-    try { if (this.dir) await this.dir.removeEntry(id); } catch (e) { /* ignore */ }
-    try { await idbDel(this.db, 'blobs', id); } catch (e) { /* ignore */ }
+    try { if (this.dir) await this.dir.removeEntry(id); } catch (e) {}
+    try { await idbDel(this.db, 'blobs', id); } catch (e) {}
   }
 };
 
@@ -776,12 +768,15 @@ const Storage = {
 const state = {
   records: [],
   byId: new Map(),
-  suite: 'main',        // 'main' | 'elite'
-  tab: 'videos',        // 'videos' | 'photos'
+  albumMeta: new Map(),   // albumId -> { hasPhoto, hasVideo, videos, photos, thumb }
+  suite: 'main',
+  tab: 'videos',
   query: '',
+  currentFolderId: null,  // null = root
   currentId: null,
+  playlist: [],           // snapshot of video ids for loop-all
   speed: 1,
-  volume: 1,            // 0 … 8  (multiplier)
+  volume: 1,
   muted: false,
   loop: 'off'
 };
@@ -793,6 +788,8 @@ const MAX_VOLUME = 8;
    ============================================================ */
 const grid       = $('#grid');
 const fileInput  = $('#fileInput');
+const folderInput= $('#folderInput');
+const breadcrumb = $('#breadcrumb');
 const watchEl    = $('#watch');
 const stage      = $('#stage');
 const video      = $('#video');
@@ -826,6 +823,7 @@ $('#btnRenameWatch').innerHTML = ICON.pencilLg;
 $('#btnDeleteWatch').innerHTML = ICON.trashLg;
 $('#viewerRename').innerHTML   = ICON.pencilLg;
 $('#viewerDelete').innerHTML   = ICON.trashLg;
+$('#btnTheme').innerHTML       = ICON.sun;
 
 /* ============================================================
    Toast
@@ -846,10 +844,7 @@ function showDialog(opts) {
     const wrap = el('div', 'modal-wrap');
     const box  = el('div', 'modal');
     box.innerHTML =
-      '<h3></h3>' +
-      '<p class="hint"></p>' +
-      '<input />' +
-      '<div class="err"></div>' +
+      '<h3></h3><p class="hint"></p><input /><div class="err"></div>' +
       '<div class="modal-actions">' +
         '<button class="mbtn cancel" type="button">Cancel</button>' +
         '<button class="mbtn ok" type="button"></button>' +
@@ -864,11 +859,8 @@ function showDialog(opts) {
     input.value = opts.value || '';
     if (opts.placeholder) input.placeholder = opts.placeholder;
 
-    // Passphrase hygiene
     if (opts.type === 'password') {
-      input.autocomplete = 'off';
-      input.autocapitalize = 'off';
-      input.spellcheck = false;
+      input.autocomplete = 'off'; input.autocapitalize = 'off'; input.spellcheck = false;
       input.name = 'pass_' + Math.random().toString(36).slice(2);
     } else {
       input.autocomplete = 'off';
@@ -897,8 +889,7 @@ function showDialog(opts) {
         const r = opts.validate(v);
         if (r !== true) {
           errEl.textContent = typeof r === 'string' ? r : 'Invalid';
-          input.focus();
-          input.select();
+          input.focus(); input.select();
           return;
         }
       }
@@ -938,15 +929,13 @@ $('#btnTheme').addEventListener('click', () => {
 });
 
 /* ============================================================
-   Media probing
+   Media probing (video middle-frame thumbnail)
    ============================================================ */
 function probeVideo(file) {
   return new Promise(resolve => {
     const url = URL.createObjectURL(file);
     const v = document.createElement('video');
-    v.preload = 'auto';
-    v.muted = true;
-    v.playsInline = true;
+    v.preload = 'auto'; v.muted = true; v.playsInline = true;
 
     let done = false;
     const finish = data => {
@@ -959,9 +948,7 @@ function probeVideo(file) {
     };
     const fallback = () => finish({
       duration: isFinite(v.duration) ? v.duration : 0,
-      width: v.videoWidth || 0,
-      height: v.videoHeight || 0,
-      thumb: null
+      width: v.videoWidth || 0, height: v.videoHeight || 0, thumb: null
     });
 
     const grab = () => {
@@ -969,45 +956,33 @@ function probeVideo(file) {
       try {
         const vw = v.videoWidth, vh = v.videoHeight;
         if (!vw || !vh) return fallback();
-
-        const w = 480;
-        const h = Math.max(1, Math.round(w * (vh / vw)));
+        const w = 480, h = Math.max(1, Math.round(w * (vh / vw)));
         const c = document.createElement('canvas');
         c.width = w; c.height = h;
         c.getContext('2d').drawImage(v, 0, 0, w, h);
-
         let thumb = null;
         try { thumb = c.toDataURL('image/webp', 0.72); } catch (e) {}
         if (!thumb || thumb.length < 120) {
           try { thumb = c.toDataURL('image/jpeg', 0.72); } catch (e) {}
         }
-        finish({
-          duration: isFinite(v.duration) ? v.duration : 0,
-          width: vw, height: vh, thumb
-        });
+        finish({ duration: isFinite(v.duration) ? v.duration : 0, width: vw, height: vh, thumb });
       } catch (e) { fallback(); }
     };
 
     v.onerror = fallback;
-
     v.onloadedmetadata = () => {
       const dur = isFinite(v.duration) ? v.duration : 0;
-      // Middle-of-video thumbnail
       if (dur > 0.4) {
         v.onseeked = grab;
         try { v.currentTime = dur / 2; } catch (e) { grab(); }
-      } else {
-        grab();
-      }
+      } else grab();
     };
 
     const safety = setTimeout(() => {
       if (done) return;
       if (v.readyState >= 2) grab(); else fallback();
     }, 12000);
-
     setTimeout(() => { if (!done) fallback(); }, 30000);
-
     v.src = url;
   });
 }
@@ -1020,9 +995,7 @@ const loadImageEl = file => new Promise((res, rej) => {
   img.src = url;
 });
 function decodeImage(file) {
-  if (self.createImageBitmap) {
-    return createImageBitmap(file).catch(() => loadImageEl(file));
-  }
+  if (self.createImageBitmap) return createImageBitmap(file).catch(() => loadImageEl(file));
   return loadImageEl(file);
 }
 const canvasToBlob = (c, type, q) => new Promise(r => c.toBlob(r, type, q));
@@ -1059,42 +1032,173 @@ async function processPhoto(file) {
   }
 
   if (src.close) { try { src.close(); } catch (e) {} }
-
   return { blob, thumb, width: w, height: h };
 }
 
 /* ============================================================
-   Data loading
+   Media type detection
+   ============================================================ */
+const VIDEO_RE = /\.(mp4|m4v|webm|mkv|mov|ogv|ogg|avi|ts|flv|3gp)$/i;
+const IMAGE_RE = /\.(jpe?g|png|gif|webp|bmp|avif|heic|heif|tiff?)$/i;
+
+function isImageFile(f) {
+  return f.type.startsWith('image/') ||
+    (!f.type.startsWith('video/') && IMAGE_RE.test(f.name));
+}
+function isMediaFile(f) {
+  return f.type.startsWith('video/') || f.type.startsWith('image/') ||
+    VIDEO_RE.test(f.name) || IMAGE_RE.test(f.name);
+}
+
+/* ============================================================
+   Data loading + album metadata
    ============================================================ */
 async function loadRecords() {
   const all = await idbAll(Storage.db, 'videos');
+  const albumIds = new Set(all.filter(r => r.kind === 'album').map(r => r.id));
+
   state.records = all
     .filter(r => (r.suite || 'main') === state.suite)
+    .map(r => {
+      if (r.parentId === undefined) r.parentId = null;
+      // Orphan fix: parentId must reference an album
+      if (r.parentId && !albumIds.has(r.parentId)) r.parentId = null;
+      return r;
+    })
     .sort((a, b) => b.createdAt - a.createdAt);
 
   state.byId.clear();
   state.records.forEach(r => state.byId.set(r.id, r));
+
+  rebuildAlbumMeta();
+}
+
+function rebuildAlbumMeta() {
+  const map = new Map();
+  for (const r of state.records) {
+    if (r.kind === 'album') map.set(r.id, { hasPhoto: false, hasVideo: false, photos: 0, videos: 0, thumb: null });
+  }
+  for (const r of state.records) {
+    if (r.kind !== 'video' && r.kind !== 'photo') continue;
+    let cur = r.parentId;
+    let safety = 0;
+    while (cur && safety++ < 100) {
+      const m = map.get(cur);
+      if (!m) break;
+      if (r.kind === 'video') { m.hasVideo = true; m.videos++; }
+      else { m.hasPhoto = true; m.photos++; }
+      if (!m.thumb && r.thumb) m.thumb = r.thumb;
+      const parent = state.byId.get(cur);
+      cur = parent ? parent.parentId : null;
+    }
+  }
+  state.albumMeta = map;
+}
+
+function folderPath(albumId) {
+  const path = [];
+  let cur = albumId;
+  let safety = 0;
+  while (cur && safety++ < 100) {
+    const r = state.byId.get(cur);
+    if (!r || r.kind !== 'album') break;
+    path.unshift(r.name);
+    cur = r.parentId;
+  }
+  return path;
 }
 
 function visibleItems() {
-  const kind = state.tab === 'photos' ? 'photo' : 'video';
-  const q = state.query;
-  return state.records.filter(r =>
-    r.kind === kind && (!q || r.name.toLowerCase().includes(q))
-  );
+  const type = state.tab === 'photos' ? 'photo' : 'video';
+  if (state.query) {
+    const q = state.query;
+    return state.records
+      .filter(r => r.kind === type && r.name.toLowerCase().includes(q))
+      .sort((a, b) => b.createdAt - a.createdAt);
+  }
+  return state.records
+    .filter(r => r.kind === type && r.parentId === state.currentFolderId)
+    .sort((a, b) => b.createdAt - a.createdAt);
+}
+
+function visibleAlbums() {
+  const type = state.tab === 'photos' ? 'photo' : 'video';
+  if (state.query) {
+    const q = state.query;
+    return state.records
+      .filter(r => r.kind === 'album' && r.name.toLowerCase().includes(q))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
+  return state.records
+    .filter(r => r.kind === 'album' && r.parentId === state.currentFolderId)
+    .filter(a => {
+      const m = state.albumMeta.get(a.id);
+      if (!m) return false;
+      if (m.photos === 0 && m.videos === 0) return true; // always show empty albums
+      return type === 'photo' ? m.hasPhoto : m.hasVideo;
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /* ============================================================
    Rendering
    ============================================================ */
 function syncTabs() {
-  const v = state.records.filter(r => r.kind === 'video').length;
-  const p = state.records.filter(r => r.kind === 'photo').length;
+  let v, p;
+  if (state.query) {
+    v = state.records.filter(r => r.kind === 'video').length;
+    p = state.records.filter(r => r.kind === 'photo').length;
+  } else {
+    v = state.records.filter(r => r.kind === 'video' && r.parentId === state.currentFolderId).length;
+    p = state.records.filter(r => r.kind === 'photo' && r.parentId === state.currentFolderId).length;
+  }
   document.querySelectorAll('.tab').forEach(b => {
     const t = b.dataset.tab;
     b.classList.toggle('active', t === state.tab);
     b.textContent = (t === 'videos' ? 'Videos' : 'Photos') + ' (' + (t === 'videos' ? v : p) + ')';
   });
+}
+
+function renderBreadcrumb() {
+  breadcrumb.textContent = '';
+
+  if (state.query) {
+    const s = el('span', 'bc-search');
+    s.innerHTML = 'Searching for <b>' + escapeHtml(state.query) + '</b> across the whole library';
+    breadcrumb.appendChild(s);
+    return;
+  }
+
+  const home = el('button', 'bc-link');
+  home.textContent = 'Home';
+  if (!state.currentFolderId) home.classList.add('current');
+  home.addEventListener('click', () => navigateTo(null));
+  breadcrumb.appendChild(home);
+
+  if (state.currentFolderId) {
+    const chain = [];
+    let cur = state.currentFolderId;
+    let safety = 0;
+    while (cur && safety++ < 100) {
+      const r = state.byId.get(cur);
+      if (!r || r.kind !== 'album') break;
+      chain.unshift(r);
+      cur = r.parentId;
+    }
+    for (const a of chain) {
+      const sep = el('span', 'bc-sep'); sep.textContent = '›';
+      breadcrumb.appendChild(sep);
+      const btn = el('button', 'bc-link');
+      btn.textContent = a.name;
+      if (a.id === state.currentFolderId) btn.classList.add('current');
+      btn.addEventListener('click', () => navigateTo(a.id));
+      breadcrumb.appendChild(btn);
+    }
+  }
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
 }
 
 function render() {
@@ -1103,29 +1207,36 @@ function render() {
 
   grid.textContent = '';
   syncTabs();
+  renderBreadcrumb();
 
-  const items = visibleItems();
-  if (!items.length) { grid.appendChild(emptyState()); return; }
+  const albums = visibleAlbums();
+  const media  = visibleItems();
+
+  if (!albums.length && !media.length) { grid.appendChild(emptyState()); return; }
 
   const frag = document.createDocumentFragment();
-  items.forEach(r => frag.appendChild(makeCard(r)));
+  albums.forEach(a => frag.appendChild(makeAlbumCard(a)));
+  media.forEach(r => frag.appendChild(makeCard(r, state.query ? { showPath: true } : null)));
   grid.appendChild(frag);
 }
 
 function emptyState() {
   const box = el('div', 'empty');
   const photo = state.tab === 'photos';
-
   let heading, body;
+
   if (state.query) {
     heading = 'No matches for "' + state.query + '"';
-    body = 'Try a different search term, or clear the search box to see everything.';
+    body = 'Try a different search term, or clear the search box to browse your library.';
+  } else if (state.currentFolderId) {
+    heading = photo ? 'No photos in this album' : 'No videos in this album';
+    body = 'Click <b>Files</b> or <b>Folder</b> to add media here, or make a sub-album with <b>New album</b>.';
   } else if (photo) {
     heading = 'No photos yet';
-    body = 'Add images with the <b>Add</b> button or by dropping them anywhere. Photos are converted to WebP automatically to save space.';
+    body = 'Add images with <b>Files</b>, or upload whole folders with <b>Folder</b> — each folder becomes an album, and photos are converted to WebP.';
   } else {
     heading = 'Your library is empty';
-    body = 'Click <b>Add</b> or drag &amp; drop files anywhere. Everything stays on this device — nothing is uploaded.';
+    body = 'Click <b>Files</b> or <b>Folder</b>, or drag &amp; drop anywhere. Everything stays on this device — nothing is uploaded.';
   }
 
   box.innerHTML =
@@ -1139,17 +1250,76 @@ function emptyState() {
   return box;
 }
 
-function makeCard(r) {
+function makeAlbumCard(album) {
+  const card = el('article', 'card album');
+  card.dataset.id = album.id;
+
+  const m = state.albumMeta.get(album.id) || { photos: 0, videos: 0, thumb: null };
+  const total = m.photos + m.videos;
+
+  const thumb = el('div', 'thumb');
+  if (m.thumb) {
+    const img = el('img');
+    img.loading = 'lazy'; img.decoding = 'async';
+    img.src = m.thumb; img.alt = '';
+    thumb.appendChild(img);
+  } else {
+    const ph = el('div', 'thumb-ph folder');
+    ph.innerHTML = ICON.folder;
+    thumb.appendChild(ph);
+  }
+
+  const fIcon = el('div', 'folder-icon');
+  fIcon.innerHTML = ICON.folderSm;
+  thumb.appendChild(fIcon);
+
+  const badge = el('span', 'dur');
+  badge.textContent = total + ' item' + (total !== 1 ? 's' : '');
+  thumb.appendChild(badge);
+
+  const meta = el('div', 'meta');
+  const title = el('div', 'title');
+  title.textContent = album.name;
+  const sub = el('div', 'sub');
+  const parts = [];
+  if (m.videos) parts.push(m.videos + ' video' + (m.videos !== 1 ? 's' : ''));
+  if (m.photos) parts.push(m.photos + ' photo' + (m.photos !== 1 ? 's' : ''));
+  sub.textContent = parts.join(' · ') || 'Empty album';
+  meta.appendChild(title);
+  meta.appendChild(sub);
+
+  const acts = el('div', 'acts');
+  const ren = el('button', 'act');
+  ren.title = 'Rename album';
+  ren.innerHTML = ICON.pencil;
+  ren.addEventListener('click', e => { e.stopPropagation(); renameItem(album.id); });
+
+  const del = el('button', 'act');
+  del.title = 'Delete album';
+  del.innerHTML = ICON.trash;
+  del.addEventListener('click', e => { e.stopPropagation(); deleteItem(album.id); });
+
+  acts.appendChild(ren);
+  acts.appendChild(del);
+
+  card.appendChild(thumb);
+  card.appendChild(meta);
+  card.appendChild(acts);
+  card.addEventListener('click', () => navigateTo(album.id));
+
+  return card;
+}
+
+function makeCard(r, opts) {
+  opts = opts || {};
   const card = el('article', 'card');
   card.dataset.id = r.id;
 
   const thumb = el('div', 'thumb');
   if (r.thumb) {
     const img = el('img');
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.src = r.thumb;
-    img.alt = '';
+    img.loading = 'lazy'; img.decoding = 'async';
+    img.src = r.thumb; img.alt = '';
     thumb.appendChild(img);
   } else {
     const ph = el('div', 'thumb-ph');
@@ -1157,11 +1327,10 @@ function makeCard(r) {
     thumb.appendChild(ph);
   }
 
-  // Badge: real MIME subtype for photos (WEBP / JPG / PNG …), duration for videos
   const badge = el('span', 'dur');
   if (r.kind === 'photo') {
-    const sub = (r.mime || 'image/webp').split('/')[1] || 'IMG';
-    badge.textContent = sub.toUpperCase();
+    const sub2 = (r.mime || 'image/webp').split('/')[1] || 'IMG';
+    badge.textContent = sub2.toUpperCase();
   } else {
     badge.textContent = fmtTime(r.duration);
   }
@@ -1170,10 +1339,18 @@ function makeCard(r) {
   const meta = el('div', 'meta');
   const title = el('div', 'title');
   title.textContent = r.name;
+
   const sub = el('div', 'sub');
-  sub.textContent = r.kind === 'photo'
+  let subText = r.kind === 'photo'
     ? ((r.width && r.height) ? r.width + '×' + r.height + ' • ' : '') + fmtBytes(r.size)
     : timeAgo(r.createdAt) + ' • ' + fmtBytes(r.size);
+
+  if (opts.showPath) {
+    const path = folderPath(r.parentId);
+    if (path.length) subText = path.join(' › ') + ' · ' + subText;
+  }
+  sub.textContent = subText;
+
   meta.appendChild(title);
   meta.appendChild(sub);
 
@@ -1204,103 +1381,110 @@ function makeCard(r) {
 }
 
 /* ============================================================
-   Adding media
+   Album creation, navigation, rename, delete
    ============================================================ */
-const VIDEO_RE = /\.(mp4|m4v|webm|mkv|mov|ogv|ogg|avi|ts|flv|3gp)$/i;
-const IMAGE_RE = /\.(jpe?g|png|gif|webp|bmp|avif|heic|heif|tiff?)$/i;
-
-async function addFiles(fileList) {
-  const files = [...fileList].filter(f =>
-    f.type.startsWith('video/') || f.type.startsWith('image/') ||
-    VIDEO_RE.test(f.name) || IMAGE_RE.test(f.name)
+async function findOrCreateAlbum(name, parentId) {
+  const existing = state.records.find(r =>
+    r.kind === 'album' && r.parentId === parentId &&
+    r.name.toLowerCase() === name.toLowerCase()
   );
-  if (!files.length) { toast('No videos or photos found'); return; }
+  if (existing) return existing.id;
 
-  if (navigator.storage && navigator.storage.persist) {
-    navigator.storage.persist().catch(() => {});
+  const id = uid();
+  const rec = { id, suite: state.suite, kind: 'album', parentId, name, createdAt: Date.now() };
+  await idbPut(Storage.db, 'videos', rec);
+  state.records.push(rec);
+  state.byId.set(id, rec);
+  return id;
+}
+
+async function createAlbumUI() {
+  const name = await showDialog({
+    title: 'New album',
+    hint: state.currentFolderId ? 'It will be created inside the current album.' : 'It will be created at the root of your library.',
+    placeholder: 'Album name',
+    confirm: 'Create',
+    validate: v => v.trim().length ? true : 'Name cannot be empty'
+  });
+  if (name === null) return;
+
+  const trimmed = name.trim().slice(0, 200);
+  if (!trimmed) return;
+
+  await findOrCreateAlbum(trimmed, state.currentFolderId);
+  rebuildAlbumMeta();
+  render();
+  toast('Album created');
+}
+
+function navigateTo(folderId) {
+  state.currentFolderId = folderId;
+  state.query = '';
+  $('#search').value = '';
+  render();
+}
+
+async function deleteAlbum(id) {
+  const album = state.byId.get(id);
+  if (!album) return;
+
+  // Collect descendants
+  const ids = [];
+  (function collect(aid) {
+    ids.push(aid);
+    for (const r of state.records) {
+      if (r.parentId === aid) {
+        if (r.kind === 'album') collect(r.id);
+        else ids.push(r.id);
+      }
+    }
+  })(id);
+
+  const nItems = ids.length - 1;
+  if (!confirm('Delete album "' + album.name + '"' + (nItems ? ' and everything inside (' + nItems + ' item' + (nItems !== 1 ? 's' : '') + ')' : '') + '?\nThis cannot be undone.')) return;
+
+  for (const rid of ids) {
+    const r = state.byId.get(rid);
+    if (r && r.kind !== 'album') {
+      try { await Storage.removeBlob(rid); } catch (e) {}
+    }
+    try { await idbDel(Storage.db, 'videos', rid); } catch (e) {}
   }
 
-  let addedV = 0, addedP = 0, i = 0;
+  state.records = state.records.filter(r => !ids.includes(r.id));
+  ids.forEach(rid => state.byId.delete(rid));
 
-  for (const file of files) {
-    i++;
-    const isImage = file.type.startsWith('image/') ||
-                    (!file.type.startsWith('video/') && IMAGE_RE.test(file.name));
-    try {
-      toast('Adding ' + i + '/' + files.length + ': ' + file.name, 180000);
+  // If we were inside the deleted album, escape to its parent
+  if (ids.includes(state.currentFolderId)) {
+    state.currentFolderId = album.parentId || null;
+  }
 
-      if (isImage) { await addPhotoFile(file); addedP++; }
-      else         { await addVideoFile(file); addedV++; }
-    } catch (e) {
-      console.error('[add] failed:', e);
-      toast('Failed: ' + file.name);
+  // If player was on a deleted video, close it
+  if (state.currentId && ids.includes(state.currentId)) closeVideo();
+  // If viewer is open and referenced a deleted item, close it
+  if (viewerEl.classList.contains('open')) {
+    const stillHere = viewerList.filter(r => !ids.includes(r.id));
+    if (!stillHere.length) closeViewer();
+    else {
+      viewerList = stillHere;
+      viewerIndex = Math.min(viewerIndex, viewerList.length - 1);
+      showPhotoAt(viewerIndex);
     }
   }
 
-  await loadRecords();
-
-  if (addedP && !addedV) state.tab = 'photos';
-  else if (addedV && !addedP) state.tab = 'videos';
-
+  rebuildAlbumMeta();
   render();
   updateStorageInfo();
-
-  const total = addedV + addedP;
-  if (total) toast('Added ' + total + ' item' + (total > 1 ? 's' : ''));
+  toast('Album deleted');
 }
 
-async function addVideoFile(file) {
-  const meta = await probeVideo(file);
-  const id = uid();
-  await Storage.saveBlob(id, file);
-
-  const rec = {
-    id,
-    suite: state.suite,
-    kind: 'video',
-    name: cleanName(file.name),
-    size: file.size,
-    mime: file.type || 'video/mp4',
-    duration: meta.duration || 0,
-    width: meta.width || 0,
-    height: meta.height || 0,
-    thumb: meta.thumb || null,
-    createdAt: Date.now()
-  };
-  await idbPut(Storage.db, 'videos', rec);
-}
-
-async function addPhotoFile(file) {
-  const out = await processPhoto(file);
-  const id = uid();
-  await Storage.saveBlob(id, out.blob);
-
-  const rec = {
-    id,
-    suite: state.suite,
-    kind: 'photo',
-    name: cleanName(file.name),
-    size: out.blob.size,
-    mime: out.blob.type || 'image/webp',
-    duration: 0,
-    width: out.width,
-    height: out.height,
-    thumb: out.thumb || null,
-    createdAt: Date.now()
-  };
-  await idbPut(Storage.db, 'videos', rec);
-}
-
-/* ============================================================
-   Rename / delete
-   ============================================================ */
 async function renameItem(id) {
   const rec = state.byId.get(id);
   if (!rec) return;
 
   const val = await showDialog({
-    title: 'Rename',
-    hint: 'Give this item a new name.',
+    title: rec.kind === 'album' ? 'Rename album' : 'Rename',
+    hint: rec.kind === 'album' ? 'Give this album a new name.' : 'Give this item a new name.',
     value: rec.name,
     confirm: 'Save',
     validate: v => v.trim().length ? true : 'Name cannot be empty'
@@ -1313,6 +1497,7 @@ async function renameItem(id) {
   rec.name = name;
   try { await idbPut(Storage.db, 'videos', rec); } catch (e) { console.warn(e); }
 
+  rebuildAlbumMeta();
   render();
   if (state.currentId === id && watchEl.classList.contains('open')) {
     $('#watchTitle').textContent = rec.name;
@@ -1327,6 +1512,8 @@ async function renameItem(id) {
 async function deleteItem(id) {
   const rec = state.byId.get(id);
   if (!rec) return;
+  if (rec.kind === 'album') return deleteAlbum(id);
+
   if (!confirm('Delete "' + rec.name + '"?\nThis cannot be undone.')) return;
 
   try {
@@ -1335,16 +1522,16 @@ async function deleteItem(id) {
   } catch (e) { console.warn('[delete]', e); }
 
   state.records = state.records.filter(r => r.id !== id);
+  state.byId.delete(id);
+
   if (state.currentId === id) closeVideo();
 
-  // Keep the photo viewer in sync if it's open
   if (viewerEl.classList.contains('open')) {
     const idx = viewerList.findIndex(r => r.id === id);
     if (idx >= 0) {
       viewerList.splice(idx, 1);
-      if (!viewerList.length) {
-        closeViewer();
-      } else {
+      if (!viewerList.length) closeViewer();
+      else {
         if (idx < viewerIndex) viewerIndex--;
         else if (idx === viewerIndex) viewerIndex = Math.min(viewerIndex, viewerList.length - 1);
         showPhotoAt(viewerIndex);
@@ -1352,11 +1539,169 @@ async function deleteItem(id) {
     }
   }
 
+  rebuildAlbumMeta();
   render();
   updateStorageInfo();
   toast('Deleted');
 }
 
+/* ============================================================
+   Adding media
+   ============================================================ */
+async function addVideoFile(file, parentId) {
+  const meta = await probeVideo(file);
+  const id = uid();
+  await Storage.saveBlob(id, file);
+
+  const rec = {
+    id, suite: state.suite, kind: 'video', parentId: parentId || null,
+    name: cleanName(file.name), size: file.size,
+    mime: file.type || 'video/mp4',
+    duration: meta.duration || 0,
+    width: meta.width || 0, height: meta.height || 0,
+    thumb: meta.thumb || null, createdAt: Date.now()
+  };
+  await idbPut(Storage.db, 'videos', rec);
+  state.records.push(rec);
+  state.byId.set(id, rec);
+}
+
+async function addPhotoFile(file, parentId) {
+  const out = await processPhoto(file);
+  const id = uid();
+  await Storage.saveBlob(id, out.blob);
+
+  const rec = {
+    id, suite: state.suite, kind: 'photo', parentId: parentId || null,
+    name: cleanName(file.name), size: out.blob.size,
+    mime: out.blob.type || 'image/webp',
+    duration: 0, width: out.width, height: out.height,
+    thumb: out.thumb || null, createdAt: Date.now()
+  };
+  await idbPut(Storage.db, 'videos', rec);
+  state.records.push(rec);
+  state.byId.set(id, rec);
+}
+
+function fileExists(parentId, file) {
+  const name = cleanName(file.name);
+  return state.records.some(r =>
+    (r.kind === 'video' || r.kind === 'photo') &&
+    r.parentId === (parentId || null) &&
+    r.name === name && r.size === file.size
+  );
+}
+
+async function addFilesToFolder(fileList, parentId) {
+  const files = [...fileList].filter(isMediaFile);
+  if (!files.length) { toast('No videos or photos found'); return; }
+
+  if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
+
+  let added = 0, skipped = 0, i = 0;
+  for (const file of files) {
+    i++;
+    try {
+      toast('Adding ' + i + '/' + files.length + ': ' + file.name, 180000);
+      if (fileExists(parentId, file)) { skipped++; continue; }
+      if (isImageFile(file)) await addPhotoFile(file, parentId);
+      else await addVideoFile(file, parentId);
+      added++;
+    } catch (e) {
+      console.error('[add] failed:', e);
+      toast('Failed: ' + file.name);
+    }
+  }
+
+  rebuildAlbumMeta();
+  render();
+  updateStorageInfo();
+  if (added) toast('Added ' + added + ' item' + (added !== 1 ? 's' : '') +
+    (skipped ? ' (' + skipped + ' duplicate' + (skipped !== 1 ? 's' : '') + ' skipped)' : ''));
+}
+
+async function addFolder(fileList) {
+  const files = [...fileList].filter(isMediaFile);
+  if (!files.length) { toast('No videos or photos found in this folder'); return; }
+
+  if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
+
+  // Sort so parent folders are created before their children
+  files.sort((a, b) => {
+    const pa = getRelPath(a), pb = getRelPath(b);
+    const da = pa.split('/').length, db = pb.split('/').length;
+    return da - db || pa.localeCompare(pb);
+  });
+
+  const pathAlbumMap = new Map();   // "Vacation/2024" -> albumId
+  let added = 0, skipped = 0, i = 0;
+
+  for (const file of files) {
+    i++;
+    try {
+      toast('Processing ' + i + '/' + files.length + ': ' + file.name, 180000);
+
+      const relPath = getRelPath(file) || file.name;
+      const parts = relPath.split('/');
+      const folderSegments = parts.slice(0, -1);   // drop filename
+
+      let parentId = state.currentFolderId;
+      let pathKey = '';
+
+      for (const seg of folderSegments) {
+        pathKey = pathKey ? pathKey + '/' + seg : seg;
+        let aid = pathAlbumMap.get(pathKey);
+        if (!aid) {
+          aid = await findOrCreateAlbum(seg, parentId);
+          pathAlbumMap.set(pathKey, aid);
+        }
+        parentId = aid;
+      }
+
+      if (fileExists(parentId, file)) { skipped++; continue; }
+      if (isImageFile(file)) await addPhotoFile(file, parentId);
+      else await addVideoFile(file, parentId);
+      added++;
+    } catch (e) {
+      console.error('[addFolder]', e);
+    }
+  }
+
+  rebuildAlbumMeta();
+  render();
+  updateStorageInfo();
+  if (added) toast('Imported ' + added + ' item' + (added !== 1 ? 's' : '') +
+    (skipped ? ' (' + skipped + ' duplicate' + (skipped !== 1 ? 's' : '') + ' skipped)' : ''));
+  else toast('Nothing new to add');
+}
+
+/* Folder drag & drop traversal */
+async function traverseEntry(entry, out, prefix) {
+  if (entry.isFile) {
+    const file = await new Promise((res, rej) => entry.file(res, rej));
+    const relPath = prefix + entry.name;
+    try {
+      Object.defineProperty(file, 'webkitRelativePath', {
+        value: relPath, writable: false, configurable: true
+      });
+    } catch (e) { file._relPath = relPath; }
+    out.push(file);
+  } else if (entry.isDirectory) {
+    const reader = entry.createReader();
+    const read = () => new Promise((res, rej) => reader.readEntries(res, rej));
+    let batch;
+    do {
+      batch = await read();
+      for (const e of batch) {
+        await traverseEntry(e, out, prefix + entry.name + '/');
+      }
+    } while (batch.length);
+  }
+}
+
+/* ============================================================
+   Storage info
+   ============================================================ */
 async function updateStorageInfo() {
   const modeEl = $('#storageMode');
   modeEl.textContent = Storage.mode === 'opfs' ? 'OPFS' : 'IndexedDB';
@@ -1369,11 +1714,11 @@ async function updateStorageInfo() {
     const { usage = 0, quota = 0 } = await navigator.storage.estimate();
     $('#storageText').textContent = fmtBytes(usage) + ' / ' + fmtBytes(quota);
     $('#storageBar').style.transform = 'scaleX(' + (quota ? Math.min(1, usage / quota) : 0) + ')';
-  } catch (e) { /* ignore */ }
+  } catch (e) {}
 }
 
 /* ============================================================
-   Audio — Web Audio gain for volume multiplier up to 8×
+   Audio (Web Audio gain up to 8×)
    ============================================================ */
 let audioCtx = null, gainNode = null, audioBroken = false;
 
@@ -1391,15 +1736,12 @@ function ensureAudio() {
     gainNode = audioCtx.createGain();
     src.connect(gainNode);
     gainNode.connect(audioCtx.destination);
-    video.volume = 1;
-    video.muted = false;
+    video.volume = 1; video.muted = false;
     applyGain();
     if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
   } catch (e) {
-    console.warn('[audio] Web Audio unavailable, volume capped at 100%:', e);
-    audioBroken = true;
-    gainNode = null;
-    // Clamp so the UI doesn't lie
+    console.warn('[audio] Web Audio unavailable:', e);
+    audioBroken = true; gainNode = null;
     state.volume = Math.min(1, state.volume);
     applyGain();
   }
@@ -1407,44 +1749,51 @@ function ensureAudio() {
 
 function applyGain() {
   const v = state.muted ? 0 : state.volume;
-
   if (gainNode && audioCtx) {
     const now = audioCtx.currentTime;
     gainNode.gain.cancelScheduledValues(now);
     gainNode.gain.setTargetAtTime(v, now, 0.012);
-    video.muted = false;
-    video.volume = 1;
+    video.muted = false; video.volume = 1;
   } else {
     video.muted = state.muted || state.volume === 0;
     video.volume = Math.min(1, state.volume);
   }
-
   volRange.value = Math.round(state.volume * 100);
   volLabel.textContent = Math.round(state.volume * 100) + '%';
-
   if (state.muted || state.volume === 0) btnMute.innerHTML = ICON.volMute;
   else if (state.volume < 0.5)           btnMute.innerHTML = ICON.volLow;
   else                                   btnMute.innerHTML = ICON.volHigh;
-
   btnMute.classList.toggle('active', state.muted || state.volume === 0);
 }
 
 function bumpVolume(delta) {
   ensureAudio();
   const cap = audioBroken ? 1 : MAX_VOLUME;
-  if (audioBroken && delta > 0 && state.volume >= 1) {
-    toast('Volume boost needs Web Audio support');
-  }
+  if (audioBroken && delta > 0 && state.volume >= 1) toast('Volume boost needs Web Audio support');
   state.volume = Math.min(cap, Math.max(0, +(state.volume + delta).toFixed(2)));
   if (state.volume > 0) state.muted = false;
   applyGain();
 }
 
 /* ============================================================
-   Player — open / close
+   Player
    ============================================================ */
 let objectUrl = null;
 let openToken = 0;
+
+function getPlaylist() {
+  if (state.query) {
+    const q = state.query;
+    return state.records
+      .filter(r => r.kind === 'video' && r.name.toLowerCase().includes(q))
+      .sort((a, b) => b.createdAt - a.createdAt)
+      .map(r => r.id);
+  }
+  return state.records
+    .filter(r => r.kind === 'video' && r.parentId === state.currentFolderId)
+    .sort((a, b) => b.createdAt - a.createdAt)
+    .map(r => r.id);
+}
 
 async function openVideo(id) {
   const rec = state.byId.get(id);
@@ -1454,6 +1803,7 @@ async function openVideo(id) {
 
   const token = ++openToken;
   state.currentId = id;
+  state.playlist = getPlaylist();
   $('#watchTitle').textContent = rec.name;
 
   watchEl.classList.add('open');
@@ -1471,12 +1821,9 @@ async function openVideo(id) {
 
     video.src = objectUrl;
     video.load();
+    applyGain(); applySpeed(); applyLoop();
 
-    applyGain();
-    applySpeed();
-    applyLoop();
-
-    try { await video.play(); } catch (e) { /* autoplay blocked */ }
+    try { await video.play(); } catch (e) {}
   } catch (e) {
     console.error('[player] load failed:', e);
     toast('Could not load this video');
@@ -1487,25 +1834,17 @@ async function openVideo(id) {
 function closeVideo() {
   openToken++;
   state.currentId = null;
-
   try { video.pause(); } catch (e) {}
   video.removeAttribute('src');
   try { video.load(); } catch (e) {}
-
   if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
-
   watchEl.classList.remove('open');
   if (!viewerEl.classList.contains('open')) document.body.style.overflow = '';
   speedMenu.classList.remove('open');
-
   if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
 }
 
-/* ============================================================
-   Player — progress
-   ============================================================ */
 let rafId = 0;
-
 function updateProgress() {
   const d = video.duration;
   if (!isFinite(d) || d <= 0) {
@@ -1515,7 +1854,6 @@ function updateProgress() {
     tDur.textContent = '0:00';
     return;
   }
-
   const p = Math.min(1, Math.max(0, video.currentTime / d));
   playedEl.style.transform = 'scaleX(' + p + ')';
   knobEl.style.left = (p * 100) + '%';
@@ -1540,20 +1878,15 @@ function startProgressLoop() {
   rafId = requestAnimationFrame(step);
 }
 
-/* ============================================================
-   Player — play / speed / loop
-   ============================================================ */
 function togglePlay() {
   ensureAudio();
   if (video.paused || video.ended) video.play().catch(() => {});
   else video.pause();
 }
-
 function setPlayIcon(isPlaying) {
   btnPlay.innerHTML = isPlaying ? ICON.pause : ICON.play;
   bigPlay.classList.toggle('hidden', isPlaying);
 }
-
 function applySpeed() {
   video.playbackRate = state.speed;
   try { video.preservesPitch = true; video.mozPreservesPitch = true; } catch (e) {}
@@ -1562,32 +1895,22 @@ function applySpeed() {
     b.classList.toggle('active', Number(b.dataset.speed) === state.speed);
   });
 }
-
-function setSpeed(s) {
-  state.speed = s;
-  applySpeed();
-  toast('Speed ' + s + '×', 1200);
-}
-
+function setSpeed(s) { state.speed = s; applySpeed(); toast('Speed ' + s + '×', 1200); }
 function applyLoop() {
   video.loop = state.loop === 'one';
   btnLoop.classList.toggle('active', state.loop !== 'off');
-  btnLoop.title = 'Loop: ' + (state.loop === 'off' ? 'off' : state.loop === 'one' ? 'this video' : 'whole library') + ' (R)';
+  btnLoop.title = 'Loop: ' + (state.loop === 'off' ? 'off' : state.loop === 'one' ? 'this video' : 'this folder') + ' (R)';
   btnLoop.style.opacity = state.loop === 'off' ? 0.72 : 1;
 }
-
 function cycleLoop() {
   state.loop = state.loop === 'off' ? 'one' : state.loop === 'one' ? 'all' : 'off';
   applyLoop();
   toast(
     state.loop === 'off' ? 'Loop off' :
-    state.loop === 'one' ? 'Looping this video' : 'Looping whole library', 1400
+    state.loop === 'one' ? 'Looping this video' : 'Looping this folder', 1400
   );
 }
 
-/* ============================================================
-   Player — controls visibility
-   ============================================================ */
 let hideTimer = 0;
 function showControls(sticky) {
   stage.classList.remove('hide-controls');
@@ -1597,24 +1920,13 @@ function showControls(sticky) {
   }
 }
 
-/* ============================================================
-   Player — fullscreen
-   ============================================================ */
 function toggleFullscreen() {
-  if (document.fullscreenElement) {
-    document.exitFullscreen().catch(() => {});
-  } else if (stage.requestFullscreen) {
-    stage.requestFullscreen().catch(() => {});
-  } else if (video.webkitEnterFullscreen) {
-    video.webkitEnterFullscreen();
-  }
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  else if (stage.requestFullscreen) stage.requestFullscreen().catch(() => {});
+  else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
 }
 
-/* ============================================================
-   Player — seeking
-   ============================================================ */
 let scrubbing = false, scrubRect = null, pendingPct = null, seekRaf = 0;
-
 function applyPendingSeek() {
   seekRaf = 0;
   if (pendingPct === null) return;
@@ -1623,21 +1935,17 @@ function applyPendingSeek() {
   video.currentTime = pendingPct * d;
   pendingPct = null;
 }
-
 function seekFromEvent(e) {
   const r = scrubRect || track.getBoundingClientRect();
   const p = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
   const d = video.duration;
   if (!isFinite(d) || d <= 0) return;
-
   playedEl.style.transform = 'scaleX(' + p + ')';
   knobEl.style.left = (p * 100) + '%';
   tCur.textContent = fmtTime(p * d);
-
   pendingPct = p;
   if (!seekRaf) seekRaf = requestAnimationFrame(applyPendingSeek);
 }
-
 track.addEventListener('pointerdown', e => {
   if (!isFinite(video.duration)) return;
   e.preventDefault();
@@ -1650,31 +1958,21 @@ track.addEventListener('pointerdown', e => {
 track.addEventListener('pointermove', e => { if (scrubbing) seekFromEvent(e); });
 const endScrub = e => {
   if (!scrubbing) return;
-  scrubbing = false;
-  scrubRect = null;
+  scrubbing = false; scrubRect = null;
   track.classList.remove('scrubbing');
   try { track.releasePointerCapture(e.pointerId); } catch (err) {}
 };
 track.addEventListener('pointerup', endScrub);
 track.addEventListener('pointercancel', endScrub);
 
-/* ============================================================
-   Player — events
-   ============================================================ */
 video.addEventListener('play', () => { setPlayIcon(true); startProgressLoop(); showControls(); });
-video.addEventListener('pause', () => {
-  setPlayIcon(false);
-  clearTimeout(hideTimer);
-  showControls(true);
-  updateProgress();
-});
+video.addEventListener('pause', () => { setPlayIcon(false); clearTimeout(hideTimer); showControls(true); updateProgress(); });
 video.addEventListener('loadedmetadata', () => { tDur.textContent = fmtTime(video.duration); updateProgress(); });
 video.addEventListener('durationchange', () => { tDur.textContent = fmtTime(video.duration); });
 video.addEventListener('timeupdate', () => { if (video.paused) updateProgress(); });
 video.addEventListener('seeking', updateProgress);
 video.addEventListener('seeked', updateProgress);
 video.addEventListener('progress', () => { if (video.paused) updateProgress(); });
-
 video.addEventListener('waiting', () => spinner.classList.add('show'));
 video.addEventListener('playing', () => spinner.classList.remove('show'));
 video.addEventListener('canplay', () => spinner.classList.remove('show'));
@@ -1682,11 +1980,12 @@ video.addEventListener('stalled', () => spinner.classList.add('show'));
 
 video.addEventListener('ended', () => {
   spinner.classList.remove('show');
-  if (state.loop === 'all') {
-    const list = state.records.filter(r => r.kind === 'video');
-    const idx = list.findIndex(r => r.id === state.currentId);
-    const next = list[(idx + 1) % list.length];
-    if (next) openVideo(next.id);
+  if (state.loop === 'all' && state.playlist && state.playlist.length > 1) {
+    const idx = state.playlist.indexOf(state.currentId);
+    if (idx >= 0) {
+      const next = state.playlist[(idx + 1) % state.playlist.length];
+      if (next && next !== state.currentId) openVideo(next);
+    }
   }
 });
 
@@ -1701,7 +2000,6 @@ stage.addEventListener('dblclick', e => {
 stage.addEventListener('mousemove', () => showControls());
 stage.addEventListener('pointerdown', () => showControls());
 
-/* Buttons */
 btnPlay.addEventListener('click', togglePlay);
 $('#btnBack').addEventListener('click', closeVideo);
 btnLoop.addEventListener('click', cycleLoop);
@@ -1712,7 +2010,6 @@ $('#btnRenameWatch').addEventListener('click', () => {
 $('#btnDeleteWatch').addEventListener('click', () => {
   if (state.currentId) deleteItem(state.currentId);
 });
-
 $('#btnPip').addEventListener('click', async () => {
   try {
     if (document.pictureInPictureElement) await document.exitPictureInPicture();
@@ -1720,14 +2017,11 @@ $('#btnPip').addEventListener('click', async () => {
     else toast('Picture-in-Picture not supported');
   } catch (e) { toast('Picture-in-Picture unavailable'); }
 });
-
 btnMute.addEventListener('click', () => {
   ensureAudio();
   state.muted = !state.muted;
-  applyGain();
-  showControls();
+  applyGain(); showControls();
 });
-
 volRange.addEventListener('input', () => {
   ensureAudio();
   let v = Number(volRange.value) / 100;
@@ -1751,7 +2045,6 @@ btnSpeed.addEventListener('click', e => {
 document.addEventListener('click', e => {
   if (!e.target.closest('.menu-wrap')) speedMenu.classList.remove('open');
 });
-
 document.addEventListener('fullscreenchange', () => {
   btnFs.innerHTML = document.fullscreenElement ? ICON.fsExit : ICON.fs;
 });
@@ -1791,7 +2084,6 @@ async function showPhotoAt(i) {
     const blob = await Storage.getBlob(rec.id);
     if (token !== photoToken) return;
     if (!blob) { toast('Could not load photo'); return; }
-
     if (viewerUrl) { URL.revokeObjectURL(viewerUrl); viewerUrl = null; }
     viewerUrl = URL.createObjectURL(blob);
     viewerImg.src = viewerUrl;
@@ -1833,11 +2125,8 @@ viewerEl.addEventListener('click', e => {
    ============================================================ */
 document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-  /* Let Space activate focused buttons outside the player */
   if (e.key === ' ' && e.target.tagName === 'BUTTON' && !e.target.closest('.watch')) return;
 
-  /* ---- Photo viewer ---- */
   if (viewerEl.classList.contains('open')) {
     if (e.key === 'Escape') { e.preventDefault(); closeViewer(); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); showPhotoAt(viewerIndex - 1); }
@@ -1845,7 +2134,6 @@ document.addEventListener('keydown', e => {
     return;
   }
 
-  /* ---- Player ---- */
   if (!watchEl.classList.contains('open')) return;
 
   const k = e.key.toLowerCase();
@@ -1888,12 +2176,11 @@ document.addEventListener('keydown', e => {
         handled = false;
       }
   }
-
   if (handled) { e.preventDefault(); showControls(); }
 });
 
 /* ============================================================
-   Tabs & search
+   Tabs, search, uploads, drag-drop
    ============================================================ */
 document.querySelectorAll('.tab').forEach(b => {
   b.addEventListener('click', () => {
@@ -1907,22 +2194,26 @@ $('#search').addEventListener('input', e => {
   render();
 });
 
-/* ============================================================
-   File input / drag & drop
-   ============================================================ */
 $('#btnAdd').addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', () => {
-  if (fileInput.files && fileInput.files.length) addFiles(fileInput.files);
+  if (fileInput.files.length) addFilesToFolder(fileInput.files, state.currentFolderId);
   fileInput.value = '';
 });
+
+$('#btnAddFolder').addEventListener('click', () => folderInput.click());
+folderInput.addEventListener('change', () => {
+  if (folderInput.files.length) addFolder(folderInput.files);
+  folderInput.value = '';
+});
+
+$('#btnNewAlbum').addEventListener('click', createAlbumUI);
 
 const dropEl = $('#drop');
 let dragDepth = 0;
 
 window.addEventListener('dragenter', e => {
   if (!e.dataTransfer || ![...e.dataTransfer.types].includes('Files')) return;
-  e.preventDefault();
-  dragDepth++;
+  e.preventDefault(); dragDepth++;
   dropEl.classList.add('show');
 });
 window.addEventListener('dragover', e => {
@@ -1934,15 +2225,42 @@ window.addEventListener('dragleave', () => {
   dragDepth = Math.max(0, dragDepth - 1);
   if (dragDepth === 0) dropEl.classList.remove('show');
 });
-window.addEventListener('drop', e => {
+window.addEventListener('drop', async e => {
   e.preventDefault();
   dragDepth = 0;
   dropEl.classList.remove('show');
-  if (e.dataTransfer && e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
+  if (!e.dataTransfer) return;
+
+  // Try folder-aware drop first
+  const items = e.dataTransfer.items;
+  if (items && items.length) {
+    const entries = [];
+    for (const item of items) {
+      if (item.kind === 'file') {
+        const entry = item.webkitGetAsEntry && item.webkitGetAsEntry();
+        if (entry) entries.push(entry);
+      }
+    }
+    if (entries.length) {
+      const files = [];
+      try {
+        for (const entry of entries) await traverseEntry(entry, files, '');
+      } catch (err) { console.warn('[drop traversal]', err); }
+      const hasPaths = files.some(f => getRelPath(f));
+      if (files.length) {
+        if (hasPaths) { await addFolder(files); return; }
+        else { await addFilesToFolder(files, state.currentFolderId); return; }
+      }
+    }
+  }
+
+  if (e.dataTransfer.files.length) {
+    addFilesToFolder(e.dataTransfer.files, state.currentFolderId);
+  }
 });
 
 /* ============================================================
-   PRIVATE suite (obfuscated passphrase — not in source)
+   PRIVATE suite (obfuscated passphrase)
    ============================================================ */
 const _PK = 42;
 const _PD = [121, 94, 79, 83, 88, 75, 95, 77, 24, 25, 26, 31, 11];
@@ -1960,22 +2278,20 @@ function updateBrand() {
   const elite = state.suite === 'elite';
   $('#brandName').textContent = elite ? 'PrivTube Elite' : 'PrivTube';
   document.title = elite ? 'PrivTube Elite' : 'PrivTube — Local Video Library';
-  $('#btnPrivate').innerHTML = elite
-    ? ICON.unlock + '<span>LOCK</span>'
-    : ICON.lock + '<span>PRIVATE</span>';
+  $('#btnPrivate').innerHTML = elite ? ICON.unlock + '<span>LOCK</span>' : ICON.lock + '<span>PRIVATE</span>';
   $('#btnPrivate').title = elite ? 'Lock the private suite' : 'Unlock the private suite';
 }
 
 async function enterSuite(suite) {
   if (state.suite === suite) return;
 
-  closeVideo();
-  closeViewer();
+  closeVideo(); closeViewer();
   if (suite !== 'elite') AI.closePanel();
 
   state.suite = suite;
   state.tab = 'videos';
   state.query = '';
+  state.currentFolderId = null;
   $('#search').value = '';
 
   document.body.classList.toggle('elite', suite === 'elite');
@@ -1997,14 +2313,12 @@ $('#btnPrivate').addEventListener('click', async () => {
   if (privateBusy) return;
   privateBusy = true;
   $('#btnPrivate').disabled = true;
-
   try {
     if (state.suite === 'elite') {
       await enterSuite('main');
       toast('Private suite locked');
       return;
     }
-
     const val = await showDialog({
       title: 'PRIVATE',
       hint: 'Enter the passphrase to unlock the private suite.',
@@ -2012,9 +2326,7 @@ $('#btnPrivate').addEventListener('click', async () => {
       confirm: 'Unlock',
       validate: v => passOK(v) ? true : 'Incorrect passphrase'
     });
-
     if (val === null) return;
-
     await enterSuite('elite');
     toast('Welcome to PrivTube Elite');
   } finally {
@@ -2024,25 +2336,16 @@ $('#btnPrivate').addEventListener('click', async () => {
 });
 
 /* ============================================================
-   ELITE AI — on-device assistant (Elite suite only)
-   Uses the browser's built-in LanguageModel / Gemini Nano.
-   No network calls, no API keys, nothing leaves the device.
+   ELITE AI
    ============================================================ */
 const AI = {
-  api: null,
-  session: null,
-  busy: false,
-  avail: 'unknown',
-  greeted: false,
-  currentToken: 0,
-  _activeBody: null,
-  _downloadHintShown: false,
+  api: null, session: null, busy: false, avail: 'unknown',
+  greeted: false, currentToken: 0, _activeBody: null, _downloadHintShown: false,
 
-  /* DOM */
   panel:    $('#aiPanel'),
   msgs:     $('#aiMsgs'),
   input:    $('#aiInput'),
-  sendBtn:  $('#aiSend'),   // ← renamed from `send` to avoid method collision
+  sendBtn:  $('#aiSend'),
   dot:      $('#aiDot'),
   statusEl: $('#aiStatus'),
 
@@ -2050,54 +2353,44 @@ const AI = {
     this.sendBtn.innerHTML = ICON.send;
     this.api =
       (typeof LanguageModel !== 'undefined' && LanguageModel) ? LanguageModel :
-      (window.ai && window.ai.languageModel) ? window.ai.languageModel :
-      null;
+      (window.ai && window.ai.languageModel) ? window.ai.languageModel : null;
   },
 
   async checkAvailability() {
     if (!this.api) return 'unavailable';
     try {
-      if (typeof this.api.availability === 'function') {
-        return await this.api.availability();
-      }
+      if (typeof this.api.availability === 'function') return await this.api.availability();
       if (typeof this.api.capabilities === 'function') {
         const c = await this.api.capabilities();
         if (c.available === 'readily') return 'available';
         if (c.available === 'after-download') return 'downloadable';
         return 'unavailable';
       }
-    } catch (e) { console.warn('[ai] availability check failed:', e); }
+    } catch (e) { console.warn('[ai]', e); }
     return 'unavailable';
   },
 
-  setStatus(text, state_) {
+  setStatus(text, s) {
     this.statusEl.textContent = text;
-    this.dot.className = 'ai-dot' + (state_ ? ' ' + state_ : '');
+    this.dot.className = 'ai-dot' + (s ? ' ' + s : '');
   },
 
   async refreshStatus() {
     this.avail = await this.checkAvailability();
-
-    if (!this.api) {
-      this.setStatus('not supported', 'err');
-    } else if (this.avail === 'available') {
-      this.setStatus('ready · on-device', 'ok');
-    } else if (this.avail === 'downloadable') {
+    if (!this.api) this.setStatus('not supported', 'err');
+    else if (this.avail === 'available') this.setStatus('ready · on-device', 'ok');
+    else if (this.avail === 'downloadable') {
       this.setStatus('model not downloaded', 'warn');
       if (!this._downloadHintShown) {
         this._downloadHintShown = true;
         if (this.panel.classList.contains('open')) {
           this.addMsg('system',
             'The on-device model isn\'t downloaded yet. Press Send once — it will ' +
-            'download in the background and answer when ready. This only happens once.'
-          );
+            'download in the background and answer when ready. This only happens once.');
         }
       }
-    } else if (this.avail === 'downloading') {
-      this.setStatus('downloading model…', 'warn');
-    } else {
-      this.setStatus('unavailable', 'err');
-    }
+    } else if (this.avail === 'downloading') this.setStatus('downloading model…', 'warn');
+    else this.setStatus('unavailable', 'err');
     return this.avail;
   },
 
@@ -2125,13 +2418,12 @@ const AI = {
               const pct = Math.round((ev.loaded || 0) * 100);
               AI.setStatus('downloading ' + pct + '%', 'warn');
             });
-          } catch (e) { /* older API */ }
+          } catch (e) {}
         }
       });
     } catch (e) {
       session = await this.api.create(params);
     }
-
     this.session = session;
     this.setStatus('ready · on-device', 'ok');
     return session;
@@ -2148,46 +2440,37 @@ const AI = {
   async openPanel() {
     if (state.suite !== 'elite') return;
     this.panel.classList.add('open');
-    this.refreshStatus().then(a => {
-      if (a === 'unavailable') this.explainUnavailable();
-    });
+    this.refreshStatus().then(a => { if (a === 'unavailable') this.explainUnavailable(); });
     if (!this.greeted) {
       this.greeted = true;
       this.addMsg('assistant',
         'Hey — I\'m Elite AI, running entirely on your device.\n\n' +
-        'Ask me anything, or just say hi. Nothing you type leaves this machine.'
-      );
+        'Ask me anything, or just say hi. Nothing you type leaves this machine.');
     }
     setTimeout(() => this.input.focus(), 60);
   },
 
-  closePanel() {
-    this.panel.classList.remove('open');
-  },
+  closePanel() { this.panel.classList.remove('open'); },
 
   explainUnavailable() {
     if (!this.api) {
       this.addMsg('system',
         'Elite AI needs the browser\'s built-in AI (Chrome 138+ with Gemini Nano). ' +
-        'This browser doesn\'t expose it, so the assistant can\'t run here.'
-      );
+        'This browser doesn\'t expose it, so the assistant can\'t run here.');
     } else {
       this.addMsg('system',
         'The on-device model isn\'t ready yet. Open chrome://flags, enable ' +
         '"Prompt API for Gemini Nano" and "Optimization Guide On Device Model", ' +
-        'then restart the browser. The model downloads itself the first time you send a message.'
-      );
+        'then restart the browser. The model downloads itself the first time you send a message.');
     }
   },
 
-  onEnter() {
-    this.refreshStatus();
-  },
+  onEnter() { this.refreshStatus(); },
 
   addMsg(role, text) {
-    const wrap   = el('div', 'ai-msg ' + role);
+    const wrap = el('div', 'ai-msg ' + role);
     const bubble = el('div', 'ai-bubble');
-    const txt    = el('div', 'ai-bubble-text');
+    const txt = el('div', 'ai-bubble-text');
     txt.textContent = text;
     bubble.appendChild(txt);
     wrap.appendChild(bubble);
@@ -2196,9 +2479,7 @@ const AI = {
     return txt;
   },
 
-  scrollBottom() {
-    this.msgs.scrollTop = this.msgs.scrollHeight;
-  },
+  scrollBottom() { this.msgs.scrollTop = this.msgs.scrollHeight; },
 
   setBusy(b) {
     this.busy = b;
@@ -2251,18 +2532,14 @@ const AI = {
       const session = await this.ensureSession();
       if (token !== this.currentToken) return;
 
-      let full = '';
-      let first = true;
-
+      let full = '', first = true;
       if (typeof session.promptStreaming === 'function') {
         const stream = session.promptStreaming(text);
         for await (const chunk of stream) {
           if (token !== this.currentToken) break;
           if (first) { body.classList.remove('typing'); body.classList.add('streaming'); first = false; }
-
           if (chunk.startsWith(full)) full = chunk;
           else full += chunk;
-
           body.textContent = full;
           this.scrollBottom();
         }
@@ -2272,12 +2549,9 @@ const AI = {
         body.classList.remove('typing');
         full = String(res || '');
         body.textContent = full;
-      } else {
-        throw new Error('NO_METHOD');
-      }
+      } else throw new Error('NO_METHOD');
 
-      if (token !== this.currentToken) return; // stopped mid-stream
-
+      if (token !== this.currentToken) return;
       body.classList.remove('typing', 'streaming');
       if (!full.trim()) body.textContent = '(no response)';
 
@@ -2285,21 +2559,13 @@ const AI = {
       if (token !== this.currentToken) return;
       body.classList.remove('typing', 'streaming');
       console.error('[ai]', err);
-
       const code = String((err && err.message) || err);
       let msg;
-
-      if (code === 'NO_API') {
-        msg = 'This browser doesn\'t expose the built-in AI model, so I can\'t run here.';
-      } else if (/NO_METHOD/.test(code)) {
-        msg = 'The AI interface here is an unexpected shape — try updating Chrome.';
-      } else if (/not ?allowed|permission|user ?gesture|activation/i.test(code)) {
-        msg = 'The model needs a click to start downloading. Press Send again to allow it.';
-      } else if (/download/i.test(code)) {
-        msg = 'The model is still downloading. Give it a moment, then try again.';
-      } else {
-        msg = 'Something went wrong: ' + code;
-      }
+      if (code === 'NO_API') msg = 'This browser doesn\'t expose the built-in AI model, so I can\'t run here.';
+      else if (/NO_METHOD/.test(code)) msg = 'The AI interface here is unexpected — try updating Chrome.';
+      else if (/not ?allowed|permission|user ?gesture|activation/i.test(code)) msg = 'The model needs a click to start downloading. Press Send again to allow it.';
+      else if (/download/i.test(code)) msg = 'The model is still downloading. Give it a moment, then try again.';
+      else msg = 'Something went wrong: ' + code;
       body.textContent = msg;
     } finally {
       if (token === this.currentToken) {
@@ -2321,7 +2587,6 @@ const AI = {
   }
 };
 
-/* ---------- AI wiring ---------- */
 AI.init();
 
 $('#aiFab').addEventListener('click', () => {
@@ -2330,25 +2595,14 @@ $('#aiFab').addEventListener('click', () => {
 });
 $('#aiClose').addEventListener('click', () => AI.closePanel());
 $('#aiClear').addEventListener('click', () => AI.clear());
-
-AI.sendBtn.addEventListener('click', () => {
-  if (AI.busy) AI.stop();
-  else AI.send();
-});
-
+AI.sendBtn.addEventListener('click', () => { if (AI.busy) AI.stop(); else AI.send(); });
 AI.input.addEventListener('input', () => {
   AI.autoResize();
   if (!AI.busy) AI.sendBtn.disabled = !AI.input.value.trim();
 });
-
 AI.input.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    AI.send();
-  } else if (e.key === 'Escape') {
-    e.preventDefault();
-    AI.closePanel();
-  }
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); AI.send(); }
+  else if (e.key === 'Escape') { e.preventDefault(); AI.closePanel(); }
 });
 
 /* ============================================================
